@@ -1,9 +1,15 @@
 package com.ljw.food_order_server.controller;
 
 
+import com.ljw.food_order_server.entity.Station;
+import com.ljw.food_order_server.service.StationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,9 +19,17 @@ import org.springframework.stereotype.Controller;
  * @author ljw
  * @since 2021-07-31
  */
-@Controller
+@RestController
 @RequestMapping("/station")
 public class StationController {
+
+    @Autowired
+    private StationService stationService;
+
+    @RequestMapping("/list")
+    public List<Station> list() {
+       return stationService.list();
+    }
 
 }
 

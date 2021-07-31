@@ -2,6 +2,8 @@ package com.ljw.food_order_server.service;
 
 import com.ljw.food_order_server.entity.Station;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ljw.food_order_server.mapper.StationMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
