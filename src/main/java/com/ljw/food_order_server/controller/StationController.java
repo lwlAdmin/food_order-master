@@ -1,6 +1,7 @@
 package com.ljw.food_order_server.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.ljw.food_order_server.entity.Station;
 import com.ljw.food_order_server.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class StationController {
     private StationService stationService;
 
     @RequestMapping("/list")
-    public List<Station> list() {
-       return stationService.list();
+    public String list() {
+        String s = JSON.toJSONString(stationService.list());
+        return s;
     }
-
 }
 

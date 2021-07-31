@@ -23,6 +23,10 @@ public class StationServiceImpl extends ServiceImpl<StationMapper, Station> impl
     @Autowired
     private StationMapper stationmapper;
 
+    /**
+     * 查询全部共享工位
+     * @return 全部工位
+     */
     @Override
     public List<Station> list() {
         return stationmapper.selectList(null);
