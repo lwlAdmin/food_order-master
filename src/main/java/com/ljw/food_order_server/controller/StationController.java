@@ -1,17 +1,14 @@
 package com.ljw.food_order_server.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ljw.food_order_server.entity.R;
 import com.ljw.food_order_server.entity.Station;
-import com.ljw.food_order_server.entity.StationMapper;
+import com.ljw.food_order_server.entity.StationQuery;
 import com.ljw.food_order_server.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class StationController {
     @PostMapping("pageStationCondition/{current}/{limit}")
     public R pageTeacherCondition(@PathVariable long current,
                                   @PathVariable long limit,
-                                  @RequestBody(required = false) StationMapper stationMapper){
+                                  @RequestBody(required = false) StationQuery stationQuery){
         //创建page对象
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Station> stationPage=
                 new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(current,limit);
@@ -41,10 +38,10 @@ public class StationController {
         QueryWrapper<Station> wrapper= new QueryWrapper<>();
         // 多条件组合查询
         // mybatis学过 动态sql
-        String location = stationMapper.getLocation();
-        Integer floor = stationMapper.getFloor();
-        String beginTime = stationMapper.getBeginTime();
-        String endTime = stationMapper.getEndTime();
+        String location = stationQuery.getLocation();
+        Integer floor = stationQuery.getFloor();
+        String beginTime = stationQuery.getBeginTime();
+        String endTime = stationQuery.getEndTime();
         //判断条件值是否为空，如果不为空拼接条件
         if(!StringUtils.isEmpty(location)) {
             //构建条件,前面带的是字段名
