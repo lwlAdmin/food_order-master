@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://192.168.1.101:3306/mgc?useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+    password: 19970612
+    url: jdbc:mysql://localhost:3306/ssm?useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
 
 
 server:

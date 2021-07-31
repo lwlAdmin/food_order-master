@@ -1,0 +1,30 @@
+[
+  {
+    "floor": 6,
+    "location": "美的总部大楼-B座",
+    "stationId": "A0102",
+    "stationPrimary": 1
+  },
+  {
+    "floor": 6,
+    "location": "美的总部大楼-B座",
+    "stationId": "A0103",
+    "stationPrimary": 2
+  },
+  {
+    "floor": 6,
+    "location": "美的总部大楼-B座",
+    "stationId": "A0104",
+    "stationPrimary": 3
+  },
+  {
+    "endTime": 1630339200000,
+    "floor": 6,
+    "location": "美的总部大楼-B座",
+    "shared": 1,
+    "startTime": 1627660800000,
+    "stationId": "A0107",
+    "stationPrimary": 4,
+    "userId": 1
+  }
+]
