@@ -27,10 +27,21 @@ public class StationController {
     @Autowired
     private StationService stationService;
 
+    /**
+     * 查询所有工位的方法
+     * @return
+     */
     @RequestMapping("/list")
     public String list() {
-        String s = JSON.toJSONString(stationService.list());
+        List<Station> list = stationService.list();
+        String s = JSON.toJSONString(list);
         return s;
     }
+
+//    @RequestMapping("/location")
+//    public String () {
+//        return "f";
+//    }
+
 }
 
