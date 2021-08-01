@@ -38,7 +38,11 @@ public class UserController {
     @RequestMapping("/getStation/{userId}")
     public String getStation(@PathVariable String userId){
         QueryWrapper<User> query = Wrappers.query();
-        query.eq("user_id",userId);
+        query.select("station_primary").eq("user_id",userId);
+        User user = userService.getOne(query);
+        if (user.getStationPrimary() == -1){
+            return "";
+        }
         return JSON.toJSONString(userService.list(query));
     }
 

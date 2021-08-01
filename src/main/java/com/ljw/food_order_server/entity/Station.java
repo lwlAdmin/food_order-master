@@ -1,5 +1,6 @@
 package com.ljw.food_order_server.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
@@ -39,9 +40,12 @@ public class Station implements Serializable {
 
     private Date endTime;
 
+
     private Integer shared;
 
     private Integer userId;
 
+    @TableLogic
+    private Boolean isDelete;
 
 }

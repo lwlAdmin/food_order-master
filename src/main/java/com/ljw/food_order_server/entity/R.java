@@ -20,12 +20,14 @@ public class  R {
     private String message;
 
     @ApiModelProperty(value = "返回数据")
-    private Map<String, Object> data = new HashMap<String, Object>();
+    private Map<String, Object> data = new HashMap<>();
 
     //把构造方法私有
     private R() {}
 
-    //成功静态方法
+    /**
+     * 成功静态方法
+     */
     public static R ok() {
         R r = new R();
         r.setSuccess(true);
@@ -34,7 +36,9 @@ public class  R {
         return r;
     }
 
-    //失败静态方法
+    /**
+     * 失败静态方法
+     */
     public static R error() {
         R r = new R();
         r.setSuccess(false);
@@ -44,28 +48,9 @@ public class  R {
     }
     //这样定义的好处使为了可以链式编程设置属性，不用分别调用各个属性的set方法
     // R.success().message().code().
-    public R success(Boolean success){
-        this.setSuccess(success);
-        return this;
-    }
-
-    public R message(String message){
-        this.setMessage(message);
-        return this;
-    }
-
-    public R code(Integer code){
-        this.setCode(code);
-        return this;
-    }
-
     public R data(String key, Object value){
         this.data.put(key, value);
         return this;
     }
 
-    public R data(Map<String, Object> map){
-        this.setData(map);
-        return this;
-    }
 }
