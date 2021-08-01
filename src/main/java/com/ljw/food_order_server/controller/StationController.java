@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -99,30 +100,46 @@ public class StationController {
     public R getStation(@PathVariable Integer userId){
         QueryWrapper<Station> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
-        List<Station> list = stationService.list(queryWrapper);
-        return R.ok().data("items",list);
+        Station station = stationService.getOne(queryWrapper);
+        return R.ok().data("items",station);
     }
 
     /**
      * 员工预定工位
-     * @param station
+     * @param userId 员工id
+     * @param stationPrimary 工位编号
      */
-    @RequestMapping("/confirmStation")
-    public R confirmStation(@RequestBody Station station){
+    @RequestMapping("/confirmStation/{userId}/{stationPrimary}")
+    public R confirmStation(@PathVariable Integer userId,@PathVariable Integer stationPrimary){
         UpdateWrapper<Station> stationUpdateWrapper = new UpdateWrapper<>();
-        stationUpdateWrapper.eq("station_primary",station.getStationPrimary());
+        Station station = new Station();
+        station.setStartTime(new Date());
+        station.setEndTime(new Date());
+        station.setShared(1);
+        station.setUserId(userId);
+        stationUpdateWrapper.eq("station_primary",stationPrimary);
         stationService.update(station,stationUpdateWrapper);
         return R.ok();
     }
 
     /**
      * 员工取消工位
-     * @param station
+     * @param userId
      * @return
      */
-    @RequestMapping("/cancelStation")
-    public R cancelStation(@RequestBody Station station){
-       return confirmStation(station);
+    @RequestMapping("/cancelStation/{userId}")
+    public R cancelStation(@PathVariable Integer userId){
+        UpdateWrapper<Station> stationUpdateWrapper = new UpdateWrapper<>();
+        QueryWrapper<Station> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", userId);
+        Station station = stationService.getOne(queryWrapper);
+        stationUpdateWrapper.eq("station_primary",station.getStationPrimary());
+        station.setShared(0);
+        station.setUserId(0);
+        station.setStartTime(new Date());
+        station.setEndTime(new Date());
+        stationService.update(station,stationUpdateWrapper);
+       return R.ok();
     }
 
 }
